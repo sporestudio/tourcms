@@ -1,15 +1,18 @@
 <?php
     namespace Controller;
+
     use Core\Template;
-    use Lib\RedisService;
+    use Controller\RedisController;
 
     class BaseController {
         protected $template;
         protected $redis;
 
-        public function __construct($REDIS_HOST, $REDIS_PORT, $REDIS_PASSWORD) {
+        public function __construct() {
+            global $REDIS_HOST, $REDIS_PORT, $REDIS_PASSWORD;
+
             $this->template = new Template();
-            $this->redis = new RedisService($REDIS_HOST, $REDIS_PORT, $REDIS_PASSWORD);
+            $this->redis = RedisController::getInstance($REDIS_HOST, $REDIS_PORT, $REDIS_PASSWORD);
         }
 
         // Aux method to redirect
