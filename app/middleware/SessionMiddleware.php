@@ -6,7 +6,7 @@ use Controller\RedisController;
 
 class SessionMiddleware {
     protected $redis;
-    protected $exTime = 600;
+    protected $exTime = 500;
 
     public function __construct() {
         global $REDIS_HOST, $REDIS_PORT, $REDIS_PASSWORD;
@@ -16,7 +16,6 @@ class SessionMiddleware {
     }
 
     public function handle() {
-        // Excluir rutas específicas de la validación de sesión
         $excludedRoutes = [
             'login/index',
             'login/process'
@@ -25,7 +24,7 @@ class SessionMiddleware {
         $currentRoute = strtolower($_GET['controller'] ?? 'login') . '/' . strtolower($_GET['action'] ?? 'index');
 
         if (in_array($currentRoute, $excludedRoutes)) {
-            return; // No validar la sesión en estas rutas
+            return;
         }
 
         if (!isset($_SESSION['user'])) {
@@ -45,7 +44,7 @@ class SessionMiddleware {
             $this->redirectLogin();
         }
 
-        // Renovar TTL de la sesión
+        
         $newTtl = time() + $this->exTime;
         $loginData['ttl'] = $newTtl;
         $this->redis->storeItemInRedis($userKey, json_encode($loginData), RedisService::REDIS_TYPE_STRING);
