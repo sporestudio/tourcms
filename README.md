@@ -8,9 +8,13 @@ TourCMS back office onboarding project.
 
 - **Login autentication panel**
 - **Dashboard with the channel operators**
+- **Info of the tours availables in the differents channels**
 
 
 ## Requirements
 
 - Deploy local environment on **Docker**.
 - **Redis 5.0.13** or later.
+
+
+## Deploy
