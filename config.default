@@ -1,0 +1,21 @@
+<?php
+
+// Add mustache loader
+Mustache_Autoloader::register();
+// use .html instead of .mustache for default template extension
+$MUSTACHE_OPTIONS =  array('extension' => '.html');
+
+// Redis configuration
+$REDIS_HOST=;
+$REDIS_PORT=;
+$REDIS_PASSWORD="";
+
+# Credentials values
+$API_KEY = ;
+
+# General values
+$BASE_URL = ;
+$MARKETPLACE_ID = ;
+$CHANNEL_ID = ;
+$TIMEOUT = ;
+$EX_TIME = ;
