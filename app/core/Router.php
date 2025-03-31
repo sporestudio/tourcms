@@ -1,8 +1,13 @@
 <?php
 namespace Core;
 
+use Middleware\SessionMiddleware;
+
 class Router {
     public function dispatch() {
+        $middleware = new sessionMiddleware();
+        $middleware->handle();
+
         $controller = isset($_GET['controller']) ? ucfirst($_GET['controller']) . 'Controller' : 'LoginController';
         $action = isset($_GET['action']) ? $_GET['action'] : 'index';
 
