@@ -6,8 +6,7 @@
     class LoginController extends BaseController {
         
         public function __construct() {
-            global $REDIS_HOST, $REDIS_PORT, $REDIS_PASSWORD;
-            parent::__construct($REDIS_HOST, $REDIS_PORT, $REDIS_PASSWORD);
+           parent::__construct();
         }
 
         public function index() {
@@ -55,14 +54,4 @@
         }
     }
 
-
-    // Process action depends on http method
-    $controller = new LoginController();
-
-    error_log(print_r($_SERVER, true));
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $controller->process();
-    } else {
-        $controller->index();
-    }
 ?>
