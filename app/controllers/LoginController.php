@@ -13,7 +13,7 @@
             echo $this->template->render('login.html');
         }
 
-        public function check_login() {
+        public function create_session() {
             global $MARKETPLACE_ID, $API_KEY;
 
             $login = [
@@ -24,9 +24,6 @@
             
             
             $this->redis->storeItemInRedis('LOGIN', json_encode($login), RedisService::REDIS_TYPE_STRING);
-
-            $login_str = $this->redis->getItemFromRedis('LOGIN', RedisService::REDIS_TYPE_STRING);
-            $login = json_decode($login_str, true);
         }
 
 
@@ -40,9 +37,8 @@
                 if ($username === 'admin' && $password === 'admin') {
                     error_log('successfully logged');
                     $_SESSION['user'] = $username;
-
-                    // Update or create keys redis session
-                    $this->check_login();
+                    
+                    $this->create_session();
 
                     header('Location: /app/controllers/ChannelController.php');
                     exit;
