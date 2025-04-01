@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
     {{> head}}
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         {{> header}}
-        <h1>Welcome to tourCMS Back Office</h1>
-        <h2>Select a channel</h2>
+        <main class="flex-grow-1">
+            <div class="container mt-5">
+                <h1>Welcome to tourCMS Back Office</h1>
+                <h2>Select a channel</h2>
 
-        <form action="index.php?controller=channel&action=select" method="post">
-            <label for="channel_id">Channels</label>
-            <select name="channel_id" id="channel_id">
-                {{# channels }}
-                <option value="{{id}}"{{name}}></option>
-                {{/ channels }}
-            </select>
-            <input type="submit" name="See" id="submit">
-        </form>
+            <form action="index.php?controller=channel&action=select" method="post">
+                <div class="form-group">
+                    <label for="channel_id">Channels</label>
+                    <select name="channel_id" id="channel_id" class="form-control">
+                        {{# channels }}
+                        <option value="{{id}}"{{name}}></option>
+                        {{/ channels }}
+                    </select>
+                </div>
+                <input type="submit" name="submit" id="submit" value="Mostrar" class="btn btn-primary btn-block">
+            </form>
+            </div>
+        </main>
         {{> footer}}
     </body>
 </html>
