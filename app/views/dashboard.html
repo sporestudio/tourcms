@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    {{> head}}
+    <body>
+        {{> header}}
+        <h1>Welcome to tourCMS Back Office</h1>
+        <h2>Select a channel</h2>
+
+        <form action="index.php?controller=channel&action=select" method="post">
+            <label for="channel_id">Channels</label>
+            <select name="channel_id" id="channel_id">
+                {{# channels }}
+                <option value="{{id}}"{{name}}></option>
+                {{/ channels }}
+            </select>
+            <input type="submit" name="See" id="submit">
+        </form>
+        {{> footer}}
+    </body>
+</html>
