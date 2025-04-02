@@ -3,8 +3,10 @@ namespace Core;
 
 use Middleware\SessionMiddleware;
 
-class Router {
-    public function dispatch() {
+class Router 
+{
+    public function dispatch() 
+    {
         $middleware = new sessionMiddleware();
         $middleware->handle();
 
@@ -21,7 +23,8 @@ class Router {
             if (class_exists($controllerClass)) {
                 $controllerInstance = new $controllerClass();
 
-                if (method_exists($controllerInstance, $action)) {
+                if (method_exists($controllerInstance, $action)) 
+                {
                     return $controllerInstance->$action();
                 } else {
                     throw new \Exception("Action '$action' not found in controller '$controllerClass'.");
@@ -34,4 +37,3 @@ class Router {
         }
     }
 }
-?>
