@@ -9,9 +9,11 @@
         "psr-4": {
             "App\\": "app/",
             "Lib\\": "app/lib/",
-            "Core\\": "app/core",
-            "Controller\\": "app/controllers",
-            "Middleware\\": "app/middleware"
+            "Core\\": "app/core/",
+            "Controller\\": "app/controllers/",
+            "Middleware\\": "app/middleware/",
+            "Model\\": "app/model/",
+            "Service\\": "app/service/"
         }
     }
 }
