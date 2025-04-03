@@ -24,6 +24,7 @@ class Api
     public function getTourCMS() 
     {
         $tourcms = new TourCMS($this->marketplaceId, $this->apiKey, $this->resultType, $this->timeOut);
+        $tourcms->set_base_url($this->baseUrl);
 
         return $tourcms;
     }
