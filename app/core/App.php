@@ -4,7 +4,6 @@ use Core\Router;
 
 class App 
 {
-    protected $config;
     protected $router;
 
     public function __construct($MARKETPLACE_ID, $API_KEY, $BASE_URL, $TIMEOUT) 
