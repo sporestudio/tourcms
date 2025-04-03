@@ -4,7 +4,13 @@ namespace Core;
 use Middleware\SessionMiddleware;
 
 class Router 
-{
+{   
+    private $controllerFactory;
+
+    public function __construct($controllerFactory)
+    {
+        $this->controllerFactory = $controllerFactory;
+    }
     public function dispatch() 
     {
         $middleware = new sessionMiddleware();
@@ -13,27 +19,16 @@ class Router
         $controller = isset($_GET['controller']) ? ucfirst($_GET['controller']) . 'Controller' : 'LoginController';
         $action = isset($_GET['action']) ? $_GET['action'] : 'index';
 
-        $controllerClass = "\\Controller\\" . $controller;
-        $controllerFile = __DIR__ . '/../controllers/' . $controller . '.php';
+        try {
+            $controllerInstance = $this->controllerFactory->create($controller);
 
-        if (file_exists($controllerFile)) {
-            require_once $controllerFile;
-
-            
-            if (class_exists($controllerClass)) {
-                $controllerInstance = new $controllerClass();
-
-                if (method_exists($controllerInstance, $action)) 
-                {
-                    return $controllerInstance->$action();
-                } else {
-                    throw new \Exception("Action '$action' not found in controller '$controllerClass'.");
-                }
+            if (method_exists($controllerInstance, $action)) {
+                return $controllerInstance->$action();
             } else {
-                throw new \Exception("Controller class '$controllerClass' not found.");
+                throw new \Exception("Action '$action' not found in controller '$controller'.");
             }
-        } else {
-            throw new \Exception("Controller file '$controllerFile' not found.");
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
         }
     }
 }
