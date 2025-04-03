@@ -1,28 +1,28 @@
 <?php
 namespace Controller;
-require_once 'BaseController.php';
-require_once __DIR__ . "/../../vendor/autoload.php";
 
+use Model\Channel;
 use Service\ChannelService;
 
 class ChannelController extends BaseController 
 {
     private $channelService;
 
-    public function __construct() 
+    public function __construct($MARKETPLACE_ID, $API_KEY, $BASE_URL, $TIMEOUT) 
     {
         parent::__construct();
-        $this->channelService = new ChannelService();
+
+        $channelModel = new Channel($MARKETPLACE_ID, $API_KEY, $BASE_URL, $TIMEOUT);
+        $this->channelService = new ChannelService($channelModel);
     }
 
     public function index() 
     {
-
         $channels = $this->channelService->listChannels();
-        
+
         echo $this->template->render('dashboard.html', ['channels' => $channels]);
     }
-    
+
     public function select() 
     {
         if (isset($_POST['channel_id'])) {
