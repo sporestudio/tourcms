@@ -1,6 +1,5 @@
 <?php
 namespace Controller;
-require_once __DIR__ ."/../../config.php";
 
 use Core\Template;
 use Controller\RedisController;
