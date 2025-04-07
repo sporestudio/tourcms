@@ -27,7 +27,7 @@ class ChannelController extends BaseController
     {
         if (isset($_POST['channel_id'])) {
             $_SESSION['channel_id'] = $_POST['channel_id'];
-            $this->redirect('index.php?controller=tour&action=index');
+            $this->redirect('index.php?controller=tour&action=listTours');
         }
     }
 }
