@@ -20,10 +20,20 @@ class Channel
         return $result->channel;
     }
 
-    public function showChannel($channelId) 
+    public function getInternalKey($channelId) 
     {
-        $result = $this->tourcms->show_channel($channelId);
+        error_log("Channel: getInternalKey called with channel_id: $channelId");
 
-        return $result;
+        $result = $this->tourcms->show_channel($channelId);
+        error_log("Channel: show_channel response for channel_id $channelId: " . print_r($result, true));
+
+        if (isset($result->channel->internal_api_key)) {
+            $internalApiKey = (string) $result->channel->internal_api_key;
+            error_log("Channel: internal_api_key got for channel_id $channelId: $internalApiKey");
+            return $internalApiKey;
+        }
+
+        error_log("Channel: Error getting internal api key for channel_id $channelId");
+        return null;
     }
 }
