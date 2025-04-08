@@ -1,0 +1,41 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* La altura mínima es igual a la altura de la ventana */
+}
+
+/* Permite que el contenido principal crezca para llenar el espacio disponible */
+main {
+    flex-grow: 1;
+}
+
+.gradient-custom {
+    background: rgb(7,101,133);
+    background: linear-gradient(14deg, rgba(7,101,133,0.8) 0%, rgba(228,223,223,0.8) 56%);
+
+    /*
+    rgb(228, 223, 223)
+    */
+}
+
+
+.tour-card {
+    height: 23rem; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.tour-card img {
+    height: 200px; 
+    object-fit: cover;
+}
+
+
+.tour-card .card-body {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
