@@ -19,15 +19,21 @@ class LoginController extends BaseController
 
     public function create_session() 
     {
-        global $MARKETPLACE_ID, $API_KEY;
-
         $login = [
-            'mk_id' => $MARKETPLACE_ID,
-            'api_id' => $API_KEY,
+            'mk_id' => $GLOBALS['MARKETPLACE_ID'],
+            'api_id' =>$GLOBALS['API_KEY'],
             'ttl' => time() + 600
         ];
         
         $this->redis->storeItemInRedis('LOGIN', json_encode($login), RedisService::REDIS_TYPE_STRING);
+    }
+
+    public function logout()
+    {
+        $this->redis->deleteItemFromRedis('LOGIN', RedisService::REDIS_TYPE_STRING);
+
+        header('Location: /index.php');
+        exit;
     }
 
 
@@ -44,7 +50,7 @@ class LoginController extends BaseController
                 header('Location: /index.php?controller=channel&action=index');
                 exit;
             } else {
-                $data = ['error' => 'Not valid credentials!'];
+                $data = ['error' => 'Not valid credentials! Please, try again.'];
                 echo $this->template->render('login.html', $data);
             }
         }
