@@ -1,9 +1,9 @@
 <?php
 namespace Core;
 
-use Controller\BaseController;
 use Controller\ChannelController;
 use Controller\LoginController;
+use Controller\TourController;
 
 class ControllerFactory 
 {
@@ -19,6 +19,13 @@ class ControllerFactory
         switch ($controllerName) {
             case "ChannelController":
                 return new ChannelController(
+                    $this->dependencies["MARKETPLACE_ID"],
+                    $this->dependencies["API_KEY"],
+                    $this->dependencies["BASE_URL"],
+                    $this->dependencies["TIMEOUT"]
+                );
+            case "TourController":
+                return new TourController(
                     $this->dependencies["MARKETPLACE_ID"],
                     $this->dependencies["API_KEY"],
                     $this->dependencies["BASE_URL"],
