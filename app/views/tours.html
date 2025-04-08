@@ -1,16 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Listado de Tours</title>
-</head>
-    <body>
-    <h1>Tours Disponibles</h1>
-    <ul>
-        {{#tours}}
-        <li>
-            <a href="">{{title}}</a>
-        </li>
-        {{/tours}}
-    </ul>
+    {{> head}}
+    <body class="d-flex flex-column min-vh-100 gradient-custom">
+        {{> header}}
+        <div class="container mt-5">
+            <h1 class="text-center mb-4">Tours Disponibles</h1>
+            <div class="row">
+                {{#tours}}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <form action="" method="post">
+                        <div class="card align-self-center tour-card">
+                            <img class="card-img-top" src="{{thumbnail_image}}" alt="Tour-thumbnail">
+                            <div class="card-body">
+                                <h5 class="card-title">{{name}}</h5>
+                                <p><span class="fw-semibold">Last update: </span>{{last_update}}</p>
+                                <a class="btn btn-primary p-1">Show tour</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                {{/tours}}
+            </div>
+        </div>
+        {{> footer}}
     </body>
 </html>
