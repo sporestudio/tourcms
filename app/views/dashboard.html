@@ -1,23 +1,42 @@
     {{> head}}
-    <body class="d-flex flex-column min-vh-100">
+    <body class="d-flex flex-column min-vh-100 gradient-custom">
         {{> header}}
         <main class="flex-grow-1">
-            <div class="container mt-5">
-                <h1>Welcome to tourCMS Back Office</h1>
-                <h2>Select a channel</h2>
-                <form action="index.php?controller=channel&action=select" method="post">
-                    <div class="form-group">
-                        <label for="channel_id">Channels</label>
-                        <select name="channel_id" id="channel_id" class="form-control">
-                            {{# channels }}
-                            <option value="{{id}}">{{name}}</option>
-                            {{/ channels }}
-                        </select>
+            <section>
+                <div class="container py-5">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                            <div class="text-center">
+                                <h1 class="fw-semibold">Welcome to tourCMS Back Office</h1>
+                                <h3 class="fw-light">Welcome again!</h3>
+                            </div>
+                            <div class="mt-5 card bg-dark text-white" style="border-radius: 1rem;">
+                                <div class="card-body p-5 text-center">
+                                    <form action="index.php?controller=channel&action=select" method="post">
+                                        <div class="form-group">
+                                            <label class="mb-3 fw-semibold" for="channel_id">CHANNELS</label>
+                                            <select name="channel_id" id="channel_id" class="form-control">
+                                                <option value="" disabled selected>Select a channel</option>
+                                                {{# channels }}
+                                                <option value="{{id}}">{{name}}</option>
+                                                {{/ channels }}
+                                            </select>
+                                        </div>
+                                        <div class="mt-4">
+                                            <input type="submit" name="submit" id="submit" value="Show" class="btn btn-primary btn-block">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <input type="submit" name="submit" id="submit" value="Mostrar" class="btn btn-primary btn-block">
-                </form>
-            </div>
+                </div>
+            </section>
         </main>
         {{> footer}}
     </body>
 </html>
+
+
+
+
