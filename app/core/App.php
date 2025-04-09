@@ -17,6 +17,15 @@ class App
 
         $controllerFactory = new ControllerFactory($dependencies);
         $this->router = new Router($controllerFactory);
+
+        // Routes
+        $this->router->addRoutes('/', 'LoginController', 'index');
+        $this->router->addRoutes('/login','LoginController', 'index');
+        $this->router->addRoutes('/login/process', 'LoginController', 'process');
+        $this->router->addRoutes('/dashboard','ChannelController','index');
+        $this->router->addRoutes('/dashboard/select', 'ChannelController', 'select');
+        $this->router->addRoutes('/tours','TourController', 'listTours');
+        $this->router->addRoutes('/logout','LoginController','logout');
     }
 
     public function run() 
