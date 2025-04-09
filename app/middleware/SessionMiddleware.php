@@ -21,22 +21,26 @@ class SessionMiddleware
     public function handle() 
     {
         $excludedRoutes = [
-            'login/index',
-            'login/process'
+            '/',
+            '/login',
+            '/login/process',
+            '/logout'
         ];
-
-        $currentRoute = strtolower($_GET['controller'] ?? 'login') . '/' . strtolower($_GET['action'] ?? 'index');
-
-        if (in_array($currentRoute, $excludedRoutes)) 
-        {
+    
+        $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        error_log("SessionMiddleware: Current path is $currentPath");
+    
+        if (in_array($currentPath, $excludedRoutes)) {
+            error_log("SessionMiddleware: Path $currentPath is excluded from session check.");
             return;
         }
-
+    
         $loginJSON = $this->redis->getItemFromRedis('LOGIN', RedisService::REDIS_TYPE_STRING);
         if (!$loginJSON) {
+            error_log("SessionMiddleware: No session found. Redirecting to /login.");
             $this->redirectLogin();
         }
-        
+
         $loginData = json_decode($loginJSON, true);
         if (!isset($loginData['ttl']) || time() > $loginData['ttl']) {
             $this->redis->deleteItemFromRedis('LOGIN', RedisService::REDIS_TYPE_STRING);
@@ -51,7 +55,7 @@ class SessionMiddleware
 
     private function redirectLogin() 
     {
-        header("Location: /index.php?controller=login&action=index");
+        header("Location: /login");
         exit;
     }
 }
