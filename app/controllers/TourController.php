@@ -29,8 +29,8 @@ class TourController extends BaseController
 
             echo $this->template->render('tours.html', ['tours' => $tours]);
         } else {
-            error_log("TourController: channel_id not found on sessionpe");
-            $this->redirect('index.php?controller=channel&action=index');
+            error_log("TourController: channel_id not found on session");
+            $this->redirect('/dashboard');
         }
     }
 }

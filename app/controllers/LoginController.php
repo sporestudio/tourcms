@@ -32,7 +32,7 @@ class LoginController extends BaseController
     {
         $this->redis->deleteItemFromRedis('LOGIN', RedisService::REDIS_TYPE_STRING);
 
-        header('Location: /index.php');
+        header('Location: /login');
         exit;
     }
 
@@ -45,9 +45,10 @@ class LoginController extends BaseController
             $password = $_POST['password'] ?? '';
 
             if ($username === 'admin' && $password === 'admin') {
+                error_log("LoginController: Authentication successful for username $username");
                 $this->create_session();
 
-                header('Location: /index.php?controller=channel&action=index');
+                header('Location: /dashboard');
                 exit;
             } else {
                 $data = ['error' => 'Not valid credentials! Please, try again.'];
