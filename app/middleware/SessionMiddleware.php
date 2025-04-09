@@ -43,7 +43,6 @@ class SessionMiddleware
             $this->redirectLogin();
         }
         
-
         $newTtl = time() + $this->exTime;
         $loginData['ttl'] = $newTtl;
         $this->redis->storeItemInRedis('LOGIN', json_encode($loginData), RedisService::REDIS_TYPE_STRING);
