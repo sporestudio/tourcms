@@ -42,6 +42,7 @@ class TourService
                 $processedTours[] = [
                     'id' => $tourId,
                     'name'=> (string) $tour->tour_name,
+                    'last_update' => (string) $tour->descriptions_last_updated,
                     'thumbnail_image' => $imageMap[$tourId] ?? null,
                 ];
             }
