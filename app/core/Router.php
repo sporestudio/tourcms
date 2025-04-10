@@ -3,18 +3,19 @@ namespace Core;
 
 use Middleware\SessionMiddleware;
 use Core\Template;
-//use Controller\RedisController;
 
 class Router 
 {   
     private $controllerFactory;
     private $template;
     private $routes = [];
+    private $config;
 
-    public function __construct($controllerFactory)
+    public function __construct($controllerFactory, array $config)
     {
         $this->controllerFactory = $controllerFactory;
         $this->template = new Template();
+        $this->config = $config;
     }
 
     public function addRoutes($path, $controller, $action)
@@ -27,7 +28,7 @@ class Router
 
     public function dispatch() 
     {
-        $middleware = new sessionMiddleware();
+        $middleware = new sessionMiddleware($this->config);
         $middleware->handle();
 
         $path = $_GET['path'] ?? '/';
@@ -52,23 +53,6 @@ class Router
             error_log("Router: No route found for path $path");
             $this->handle404();
         }
-
-        /*
-        $controller = isset($_GET['controller']) ? ucfirst($_GET['controller']) . 'Controller' : 'LoginController';
-        $action = isset($_GET['action']) ? $_GET['action'] : 'index';
-
-        try {
-            $controllerInstance = $this->controllerFactory->create($controller);
-
-            if (method_exists($controllerInstance, $action)) {
-                return $controllerInstance->$action();
-            } else {
-                throw new \Exception("Action '$action' not found in controller '$controller'.");
-            }
-        } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
-        }
-        */
     }
 
     private function handle404()
