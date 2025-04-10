@@ -13,4 +13,8 @@ phpunit.phar
 phpunit.phar.dist
 
 # Avoid sensitive files
-config.php
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
