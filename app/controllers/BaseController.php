@@ -1,24 +1,31 @@
 <?php
+/* * (c) 2023 Backoffice
+ * 
+ * This file is responsible for the base controller class.
+ * It initializes the template and Redis connection.
+ * 
+ */
+
 namespace Controller;
 
 use Core\Template;
-use Controller\RedisController;
+use Lib\RedisManager;
 
 class BaseController 
 {
     protected $template;
     protected $redis;
+    protected $config;
 
-    public function __construct() 
+    public function __construct(array $config) 
     {
-        global $REDIS_HOST, $REDIS_PORT, $REDIS_PASSWORD;
-
-        if (empty($REDIS_HOST) || empty($REDIS_PORT)) {
-            throw new \Exception("Redis configuration is missing.");
-        }
-
+        $this->config = $config;
         $this->template = new Template();
-        $this->redis = RedisController::getInstance($REDIS_HOST, $REDIS_PORT, $REDIS_PASSWORD);
+        $this->redis = RedisManager::getInstance(
+            $this->config['REDIS_HOST'],
+            $this->config['REDIS_PORT'],
+            $this->config['REDIS_PASSWORD']
+        );
     }
 
     // Aux method to redirect
