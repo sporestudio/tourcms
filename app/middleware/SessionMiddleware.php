@@ -1,20 +1,39 @@
 <?php
+/*
+ * (c) 2023 Backoffice
+ *
+ * This file is responsible for managing user sessions in the backoffice application.
+ * It uses Redis to store session data and checks for session validity.
+ * If a session is not found or has expired, the user is redirected to the login page.
+ *
+ * The session timeout is set to 500 seconds.
+ *
+ * The class is initialized with a configuration array containing Redis connection details.
+ * The handle method checks the current request path against a list of excluded routes.
+ * If the path is not excluded, it checks for a valid session in Redis.
+ * If no session is found or the session has expired, the user is redirected to the login page.
+ * If a valid session is found, the session TTL is updated in Redis.
+ * The redirectLogin method is used to redirect the user to the login page.
+ *
+ */
+
 namespace Middleware;
 
+use Lib\RedisManager;
 use Lib\RedisService;
-use Controller\RedisController;
 
 class SessionMiddleware 
 {
     protected $redis;
-    protected $exTime = 500;
+    protected const exTime = 500;
 
-    // TODO: pass to the construct redis as an object.
-    public function __construct() 
+    public function __construct(array $config) 
     {
-        global $REDIS_HOST, $REDIS_PORT, $REDIS_PASSWORD;
-
-        $this->redis = RedisController::getInstance($REDIS_HOST, $REDIS_PORT, $REDIS_PASSWORD);
+        $this->redis = RedisManager::getInstance(
+            $config["redis"]["host"],
+            $config["redis"]["port"],
+            $config["redis"]["password"]
+        );
         session_start();
     }
 
@@ -47,7 +66,7 @@ class SessionMiddleware
             $this->redirectLogin();
         }
         
-        $newTtl = time() + $this->exTime;
+        $newTtl = time() + self::exTime;
         $loginData['ttl'] = $newTtl;
         $this->redis->storeItemInRedis('LOGIN', json_encode($loginData), RedisService::REDIS_TYPE_STRING);
         $this->redis->expireAt('LOGIN', $newTtl);
