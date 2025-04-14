@@ -30,8 +30,6 @@ $BASE_URL = $_ENV['BASE_URL'];
 $MARKETPLACE_ID = $_ENV['MARKETPLACE_ID'];
 $CHANNEL_ID = $_ENV['CHANNEL_ID'];
 $TIMEOUT = $_ENV['TIMEOUT'];
-$EX_TIME = time() + $_ENV['EX_TIME'];
-
 
 return [
     'redis' => [
@@ -47,7 +45,4 @@ return [
         'channel_id' => $CHANNEL_ID,
         'timeout' => $TIMEOUT,
     ],
-    'session' => [
-        'ex_time' => $EX_TIME,
-    ]
 ];
