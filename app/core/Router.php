@@ -1,4 +1,15 @@
 <?php
+
+/*
+ * (c) 2023 Backoffice
+ * 
+ * This file is responsible for routing HTTP requests to the appropriate controllers and actions.
+ * It initializes the router with a controller factory and a configuration array.
+ * The addRoutes method is used to define routes, and the dispatch method handles incoming requests.
+ * If a route is not found, a 404 error page is rendered.
+ * 
+ */
+
 namespace Core;
 
 use Middleware\SessionMiddleware;
@@ -44,21 +55,23 @@ class Router
             error_log("Router: Found route for path $path. Controller: $controller, Action: $action");
 
             if (method_exists($controllerInstance, $action)) {
-                return $controllerInstance->$action();
+                $response = $controllerInstance->$action();
+                echo $response;
             } else {
                 error_log("Router: Action $action not found in controller $controller");
-                $this->handle404();
+                $response = $this->handle404();
+                echo $response;
             }
         } else {
             error_log("Router: No route found for path $path");
-            $this->handle404();
+            $response = $this->handle404();
+            echo $response;
         }
     }
 
     private function handle404()
     {
         http_response_code(404);
-        echo $this->template->render("404.html", []);
-        exit;
+        return $this->template->render("404.html", []);
     }
 }
