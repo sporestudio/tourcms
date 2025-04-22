@@ -3,7 +3,7 @@
  * (c) 2023 Backoffice
  * 
  * This file is reponsible to managing the logic related to the customer data.
- * It manages the data returned from the TourCMS API and formats it for the application.
+ * I
  *  
  */ 
 
@@ -19,15 +19,7 @@
     {
         $this->customer = $customer;
     }
-
-    private function mapCustomers($enquiry)
-    {
-        return [
-            'customer_id' => $enquiry->enquiry_id,
-            'customer_name' => $enquiry->status_text,
-        ];
-    }
-
+    
     private function getValueOrNull($value)
     {
         return isset($value) && $value !== '' ? (string) $value : null;
