@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    {{> head}}
+    <body class="gradient">
+        {{> header}}
+        <main>
+            <section>
+                {{#tour}}
+                <div class="align-self-center p-5 mt-4 bg-light rounded-3 shadow">
+                    <div class="container mt-5">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <img src="{{image}}" alt="tour-image" class="mb-3 img-fluid rounded-3 shadow">
+                            </div>
+                            <div class="col-md-6">
+                                <h2 class="mb-3">{{name}}</h2>
+                                <p class="text-muted mb-4">From: {{price}} {{currency}}</p>
+                                <p class="mb-4">{{desc}}</p>
+                                <p class="mb-4">
+                                    {{#suitable_for_children}}
+                                        &#128118 Suitable for children!
+                                    {{/suitable_for_children}}
+                                    {{^suitable_for_children}}
+                                        &#128683 Not suitable for children
+                                    {{/suitable_for_children}}
+                                </p>
+                                <form action="/tours/availability" method="post">
+                                    <div class="mb-3">
+                                        <label for="date" class="form-label">Select Date</label>
+                                        <input type="date" id="date" name="date" class="form-control" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="people" class="form-label">Number of People</label>
+                                        <input type="number" id="people" name="people" class="form-control" min="1" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Check Availability</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/tour}}
+            </section>
+        </main>
+        {{> footer}}
+    </body>
+</html>
