@@ -1,4 +1,14 @@
 <?php
+
+/* 
+ * (c) 2023 Backoffice
+ * 
+ * This file is responsible for rendering templates using the Mustache templating engine.
+ * It initializes the Mustache engine with the specified template and partials directories.
+ * The render method is used to render a template with the provided data.   
+ * 
+ */
+
 namespace Core;
 
 class Template 
