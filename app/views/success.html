@@ -3,15 +3,27 @@
     {{> head}}
     <body class="gradient">
         {{> header}}
-        <main>
-            <h1>Booking Committed Successfully</h1>
-            {{#data}}
-            <ul>
-                <li>Booking ID: {{booking_id}}</li>
-                <li>Voucher Url: <a href="{{voucher_url}}">See voucher</a></li>
-            </ul>
-            <a href="/dashboard" class="btn btn-primary">Back to Dashboard</a>
-            {{/data}}
+        <main class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-8 col-md-6">
+                    <div class="card booking-card shadow">
+                        <div class="card-body">
+                            <h5 class="card-title text-center alert alert-success fs-4">Booking Committed Successfully</h5>
+                            {{#data}}
+                            <ul class="list-unstyled">
+                                <li class="fs-5"><strong>Booking ID:</strong> {{booking_id}}</li>
+                                <li class="fs-5"><strong>Voucher URL:</strong> 
+                                    <a href="{{voucher_url}}" target="_blank" class="btn btn-link">See Voucher</a>
+                                </li>
+                            </ul>
+                            <div class="d-grid">
+                                <a href="/dashboard" class="btn btn-primary mt-3 fs-5">Back to Dashboard</a>
+                            </div>
+                            {{/data}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
         {{> footer}}
     </body>
