@@ -15,6 +15,7 @@
                             {{#lead_customer_name}}
                             <p><span class="fw-semibold">Customer: </span>{{lead_customer_name}}</p>
                             {{/lead_customer_name}}
+                            <p><span class="fw-semibold">Customer ID: </span>{{customer_id}}</p>
                             <p><span class="fw-semibold">Channel: </span>{{channel_name}}</p>
                             <form action="/book/show" method="GET">
                                 <input type="hidden" name="booking_id" value="{{booking_id}}">
