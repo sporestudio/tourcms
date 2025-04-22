@@ -1,4 +1,12 @@
 <?php
+/* * (c) 2023 Backoffice
+ * 
+ * This file is responsible for the ChannelService class.
+ * The ChannelService class is responsible for managing channels.
+ * It uses the Channel model to interact with the database and perform operations related to channels.
+ * 
+ */ 
+
 namespace Service;
 
 use Model\Channel;
