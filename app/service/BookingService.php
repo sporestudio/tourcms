@@ -47,10 +47,9 @@ class BookingService
         $result = [
             'booking_id' => (string) $book->booking_id,
             'customer_name' => (string) $book->customers->customer->firstname . ' ' . (string) $book->customers->customer->surname,
-            'customer_email' => (string) $book->customer->customer_email,
-            'channel_name' => (string) $book->channel_name,
-            'voucher_url' => (string) $book->voucher_url,
-            'booking_name' => (string) $book->booking_name,
+            'customer_id' => (string) $book->customers->customer->customer_id,
+            'price' => (string) $book->sales_revenue,
+            'currency' => (string) $book->sale_currency,
         ];
 
         return $result;
@@ -112,6 +111,7 @@ class BookingService
             'channel_name' => (string) $booking->channel_name,
             'lead_customer_name' => (string) $booking->lead_customer_name,
             'booking_name' => (string) $booking->booking_name,
+            'customer_id' => (string) $booking->lead_customer_id,
         ];
     }
 

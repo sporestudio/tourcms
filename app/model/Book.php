@@ -2,7 +2,7 @@
 /* * (c) 2023 Backoffice
  * 
  * This file is repomsible for mananging the booking API connection to TourCMS.
- * It uses the TourCMS library to start, commit, list, show, and cancel bookings.
+ * It uses the TourCMS library to start, commit, list, show, and cancel bookings.s
  * 
  */
 
