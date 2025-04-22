@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    {{> head}}
+    <body class="gradient">
+        {{> header}}
+        <main class="container mt-5">
+            {{#customer}}
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-8 col-md-6">
+                    <div class="card customer-card shadow">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Customer Details</h5>
+                            <ul class="list-unstyled">
+                                <li class="fs-5"><strong>First Name:</strong> {{firstname}}</li>
+                                <li class="fs-5"><strong>Surname:</strong> {{surname}}</li>
+                                <li class="fs-5"><strong>Customer ID:</strong> {{customer_id}}</li>
+                                <li class="fs-5"><strong>Email:</strong> {{customer_email}}</li>
+                                {{#address}}
+                                <li class="fs-5"><strong>Address:</strong> {{address}}</li>
+                                {{/address}}
+                                {{#city}}
+                                <li class="fs-5"><strong>City:</strong> {{city}}</li>
+                                {{/city}}
+                                {{#country}}
+                                <li class="fs-5"><strong>Country:</strong> {{country}}</li>
+                                {{/country}}
+                                {{#gender}}
+                                <li class="fs-5"><strong>Geneder:</strong> {{gender}}</li>
+                                {{/gender}}
+                                {{#nationality}}
+                                <li class="fs-5"><strong>Nationality:</strong> {{nationality}}</li>
+                                {{/nationality}}
+                                {{#phone}}
+                                <lic class="fs-5"><strong>Phone:</strong> {{phone}}</li>
+                                {{/phone}}
+                            </ul>
+                            <div class="d-grid">
+                                <a href="/customers/update" class="btn btn-primary mt-3 fs-5">Update customer</a>
+                            </div>
+                            <div class="d-grid">
+                                <a href="/customers" class="btn btn-primary mt-3 fs-5">Back to Customers</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/customer}}
+        </main>
+        {{> footer}}
+    </body>
+</html>
