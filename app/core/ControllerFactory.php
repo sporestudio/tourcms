@@ -1,38 +1,50 @@
 <?php
+/* * (c) 2023 Backoffice
+ * 
+ * This file is responsible for creating instances of controllers based on the provided controller name.
+ * It uses a switch statement to determine which controller to instantiate and returns the instance.
+ * 
+ */
+
 namespace Core;
 
 use Controller\ChannelController;
 use Controller\LoginController;
 use Controller\TourController;
+use Controller\BookingController;
 
 class ControllerFactory 
 {
-    private $dependencies;
+    public const CHANNEL_CONTROLLER = 'Channel';
+    public const TOUR_CONTROLLER = 'Tour';
+    public const BOOKING_CONTROLLER = 'Booking';
+    public const LOGIN_CONTROLLER = 'Login';
+    private $config;
 
-    public function __construct($dependencies) 
+    public function __construct(array $config) 
     {
-        $this->dependencies = $dependencies;
+        $this->config = $config;
     }
 
     public function create($controllerName)
     {
         switch ($controllerName) {
-            case "ChannelController":
+            case self::CHANNEL_CONTROLLER:
                 return new ChannelController(
-                    $this->dependencies["MARKETPLACE_ID"],
-                    $this->dependencies["API_KEY"],
-                    $this->dependencies["BASE_URL"],
-                    $this->dependencies["TIMEOUT"]
+                    $this->config
                 );
-            case "TourController":
+            case self::TOUR_CONTROLLER:
                 return new TourController(
-                    $this->dependencies["MARKETPLACE_ID"],
-                    $this->dependencies["API_KEY"],
-                    $this->dependencies["BASE_URL"],
-                    $this->dependencies["TIMEOUT"]
+                    $this->config
                 );
-            case "LoginController":
-                return new LoginController();
+            case self::BOOKING_CONTROLLER:
+                return new BookingController(
+                    $this->config
+                );
+            case self::LOGIN_CONTROLLER:
+                return new LoginController(
+                    $this->config
+                );
             default:
                 throw new \Exception("Controller '$controllerName' not found.");
         }
