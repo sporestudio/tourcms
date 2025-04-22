@@ -35,16 +35,7 @@ class CustomerController extends BaseController
 
     public function listCustomers()
     {
-        try {
-            $channelId = $this->redis->getItemFromRedis('channel_id', RedisService::REDIS_TYPE_STRING);
-            $params = '';
-            $customers = $this->customerService->listCustomers($params, $channelId);
-
-            return $this->template->render('customers.html', $customers);
-        } catch (\Exception $e) {
-            error_log('Error listing customers: '. $e->getMessage());
-                return $this->template->render('customers.html', ['error' => 'Invalid customers data']);
-        }
+        return $this->template->render('customers.html');
     }
 
     public function showCustomer()
