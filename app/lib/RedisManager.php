@@ -1,9 +1,8 @@
 <?php
 /*
-    * RedisManager.php
-    * Singleton class to manage Redis connections 
-    * and provide a single instance of RedisService.
-    * Backoffice project.
+* Singleton class to manage Redis connections 
+* and provide a single instance of RedisService.
+* Backoffice project.
 */
 
 namespace Lib;
