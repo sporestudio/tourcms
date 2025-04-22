@@ -1,4 +1,11 @@
 <?php
+/* * (c) 2023 Backoffice
+ * 
+ * This file is responsible for managing the API connection to TourCMS.
+ * It uses the TourCMS library to handle API requests and responses.
+ * 
+ */
+
 namespace Model;
 
 use TourCMS\Utils\TourCMS as TourCMS;

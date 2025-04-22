@@ -1,4 +1,11 @@
 <?php
+/* * (c) 2023 Backoffice
+ * 
+ * This file is responsible for managing the channels in the TourCMS system.
+ * It uses the TourCMS API to list channels and retrieve their internal API keys.
+ * 
+ */
+
 namespace Model;
 
 use Model\Api;
