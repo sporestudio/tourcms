@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    {{> head}}
+    <body class="d-flex flex-column min-vh-100 gradient">
+        {{> header}}
+        <div class="container mt-5">
+            <h1 class="text-center mb-4">Available Bookings</h1>
+            <div class="row">
+                {{#availableBookings}}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card align-self-center booking-card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{#booking_name}}{{booking_name}}{{/booking_name}}{{^booking_name}}No name for this booking{{/booking_name}}</h5>
+                            <p><span class="fw-semibold">Booking ID: </span>{{booking_id}}</p>
+                            {{#lead_customer_name}}
+                            <p><span class="fw-semibold">Customer: </span>{{lead_customer_name}}</p>
+                            {{/lead_customer_name}}
+                            <p><span class="fw-semibold">Channel: </span>{{channel_name}}</p>
+                            <form action="/book/show" method="GET">
+                                <input type="hidden" name="booking_id" value="{{booking_id}}">
+                                <button type="submit" class="btn btn-primary w-100">Show Booking</button>
+                            </form>
+                            <form action="/book/cancel" method="GET">
+                                <input type="hidden" name="booking_id" value="{{booking_id}}">
+                                <button type="submit" class="btn btn-danger w-100">Cancel Booking</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {{/availableBookings}}
+            </div>
+            {{^availableBookings}}
+            <h1 class="text-center">No available bookings found</h1>
+            {{/availableBookings}}
+
+            <h1 class="text-center mb-4">Cancelled Bookings</h1>
+            <div class="row">
+                {{#cancelledBookings}}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card align-self-center booking-card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{#booking_name}}{{booking_name}}{{/booking_name}}{{^booking_name}}No name for this booking{{/booking_name}}</h5>
+                            <p><span class="fw-semibold">Booking ID: </span>{{booking_id}}</p>
+                            {{#lead_customer_name}}
+                            <p><span class="fw-semibold">Customer: </span>{{lead_customer_name}}</p>
+                            {{/lead_customer_name}}
+                            <p><span class="fw-semibold">Channel: </span>{{channel_name}}</p>
+                            <p class="text-danger">{{cancel_text}}</p>
+                        </div>
+                    </div>
+                </div>
+                {{/cancelledBookings}}
+            </div>
+            {{^cancelledBookings}}
+            <h1 class="text-center">No cancelled bookings found</h1>
+            {{/cancelledBookings}}
+        </div>
+        {{> footer}}
+    </body>
+</html>

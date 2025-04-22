@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    {{> head}}
+    <body class="gradient">
+        {{> header}}
+        <main class="container mt-5">
+            <h1 class="text-center mb-4">Booking Details</h1>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Booking Name: {{booking.booking_name}}</h5>
+                    <p><strong>Booking ID:</strong> {{booking.booking_id}}</p>
+                    <p><strong>Customer:</strong> {{booking.lead_customer_name}}</p>
+                    <p><strong>Channel:</strong> {{booking.channel_name}}</p>
+                    <p><strong>Start Date:</strong> {{booking.start_date}}</p>
+                    <p><strong>End Date:</strong> {{booking.end_date}}</p>
+                    <a href="{{booking.voucher_url}}" class="btn btn-primary" target="_blank">Download Voucher</a>
+                    <a href="/bookings" class="btn btn-primary">Go back to bookings</a>
+                </div>
+            </div>
+        </main>
+        {{> footer}}
+    </body>
+</html>
