@@ -68,6 +68,7 @@ class BookingController extends BaseController
 
                 $data = $this->bookingService->startBooking($componentKey, $customer, $channelId);
                 $this->redis->storeItemInRedis('booking_id', $data['booking_id'], RedisService::REDIS_TYPE_STRING);
+                $this->redis->storeItemInRedis('customer_id', $data['customer_id'], RedisService::REDIS_TYPE_STRING);
 
                 error_log('Data passed to confirmation.html: ' . print_r($data, true));
                 return $this->template->render('confirmation.html', ['data' => $data]); 
