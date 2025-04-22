@@ -9,6 +9,7 @@
 namespace Core;
 
 use Controller\ChannelController;
+use Controller\CustomerController;
 use Controller\LoginController;
 use Controller\TourController;
 use Controller\BookingController;
@@ -19,6 +20,7 @@ class ControllerFactory
     public const TOUR_CONTROLLER = 'Tour';
     public const BOOKING_CONTROLLER = 'Booking';
     public const LOGIN_CONTROLLER = 'Login';
+    public const CUSTOMER_CONTROLLER = 'Customer';
     private $config;
 
     public function __construct(array $config) 
@@ -43,6 +45,10 @@ class ControllerFactory
                 );
             case self::LOGIN_CONTROLLER:
                 return new LoginController(
+                    $this->config
+                );
+            case self::CUSTOMER_CONTROLLER:
+                return new CustomerController(
                     $this->config
                 );
             default:
