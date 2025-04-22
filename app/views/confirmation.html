@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">    
+    {{> head}}
+    <body class="gradient">
+        {{> header}}
+        <main class="container mt-5">
+            <h1 class="text-center mb-4">Booking Confirmation</h1>
+            {{#error}}
+            <div class="alert alert-danger error-message">
+                {{error}}
+            </div>
+            {{/error}}
+            {{#data}}
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-8 col-md-6">
+                    <div class="card booking-card shadow">
+                        <div class="card-body">
+                            <h5 class="card-title">Booking ID: {{booking_id}}</h5>
+                            <p><span class="fw-semibold">Customer Name:</span> {{customer_name}}</p>
+                            <p><span class="fw-semibold">Customer Email:</span> {{customer_email}}</p>
+                            <p><span class="fw-semibold">Channel Name:</span> {{channel_name}}</p>
+                            <p><span class="fw-semibold">Voucher:</span> 
+                                <a href="{{voucher_url}}" target="_blank" class="btn btn-link">Download Voucher</a>
+                            </p>
+                            <form action="/book/commit" method="POST">
+                                <input type="hidden" name="booking_id" value="{{booking_id}}">
+                                <button type="submit" class="btn btn-primary w-100">Commit Booking</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/data}}
+        </main>
+        {{> footer}}
+    </body>
+</html>

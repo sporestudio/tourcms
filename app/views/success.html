@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    {{> head}}
+    <body class="gradient">
+        {{> header}}
+        <main>
+            <h1>Booking Committed Successfully</h1>
+            {{#data}}
+            <ul>
+                <li>Booking ID: {{booking_id}}</li>
+                <li>Voucher Url: <a href="{{voucher_url}}">See voucher</a></li>
+            </ul>
+            <a href="/dashboard" class="btn btn-primary">Back to Dashboard</a>
+            {{/data}}
+        </main>
+        {{> footer}}
+    </body>
+</html>
