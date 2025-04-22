@@ -46,6 +46,8 @@ class App
         $this->router->addRoutes('/bookings','Booking', 'listBookings');
         $this->router->addRoutes('/book/show','Booking', 'showBooking');
         $this->router->addRoutes('/book/cancel','Booking', 'cancelBooking');
+        $this->router->addRoutes('/customers', 'Customer', 'listCustomers');
+        $this->router->addRoutes('/customers/search', 'Customer', 'showCustomer');
         $this->router->addRoutes('/logout','Login','logout');
     }
 
