@@ -1,9 +1,6 @@
 # OnBoarding Jorge 
 TourCMS back office onboarding project.
 
-> [!WARNING]
-> This project is under development.
-
 ## Features
 
 - **Login autentication panel**
